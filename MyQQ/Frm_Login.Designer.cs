@@ -49,6 +49,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(191, 14);
             this.txtID.TabIndex = 0;
+            this.txtID.TextChanged += new System.EventHandler(this.TxtID_TextChanged);
             this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtID_KeyPress);
             // 
             // txtPwd
@@ -59,6 +60,7 @@
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(191, 14);
             this.txtPwd.TabIndex = 1;
+            this.txtPwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPwd_KeyPress);
             // 
             // pboxMin
             // 
@@ -68,6 +70,7 @@
             this.pboxMin.Size = new System.Drawing.Size(27, 28);
             this.pboxMin.TabIndex = 2;
             this.pboxMin.TabStop = false;
+            this.pboxMin.Click += new System.EventHandler(this.PboxMin_Click);
             // 
             // pboxClose
             // 
@@ -77,6 +80,7 @@
             this.pboxClose.Size = new System.Drawing.Size(27, 28);
             this.pboxClose.TabIndex = 3;
             this.pboxClose.TabStop = false;
+            this.pboxClose.Click += new System.EventHandler(this.PboxClose_Click);
             // 
             // pboxLogin
             // 
@@ -97,7 +101,7 @@
             this.cboxRemember.TabIndex = 5;
             this.cboxRemember.Text = "记住密码";
             this.cboxRemember.UseVisualStyleBackColor = true;
-            this.cboxRemember.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.cboxRemember.CheckedChanged += new System.EventHandler(this.cboxRemember_CheckedChanged);
             // 
             // cboxAutoLogin
             // 
@@ -121,6 +125,7 @@
             this.linklblReg.TabIndex = 7;
             this.linklblReg.TabStop = true;
             this.linklblReg.Text = "申请账号";
+            this.linklblReg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinklblReg_LinkClicked);
             // 
             // Frm_Login
             // 

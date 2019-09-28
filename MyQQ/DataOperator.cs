@@ -39,6 +39,14 @@ namespace MyQQ
             connection.Close();
             return result;
         }
+
+        public DataSet GetDataSet(string sql)
+        {
+            SqlDataAdapter sqlda = new SqlDataAdapter(sql, connection);
+            DataSet ds = new DataSet();
+            sqlda.Fill(ds);
+            return ds;
+        }
     }
 
 }

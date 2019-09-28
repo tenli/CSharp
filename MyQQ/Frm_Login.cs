@@ -67,7 +67,7 @@ namespace MyQQ
                     {
                         dataOper.ExecSQLResult("update tb_User set Remember=0 where ID=" + int.Parse(txtID.Text.Trim()));
                         dataOper.ExecSQLResult("update tb_User set AutoLogin=0 where id=" + int.Parse(txtID.Text.Trim()));
-                        dataOper.ExecSQLResult("update tb_User set Flage=1 where id=" + int.Parse(txtID.Text.Trim()));
+                        dataOper.ExecSQLResult("update tb_User set Flag=1 where id=" + int.Parse(txtID.Text.Trim()));
                         Frm_Main frmMain = new Frm_Main();//创建主窗体对象
                         frmMain.Show();//启动
                         this.Visible = false;//隐藏当前登录窗体
@@ -94,6 +94,60 @@ namespace MyQQ
             }
             else
                 e.Handled = true;
+        }
+
+        private void TxtPwd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                PboxLogin_Click(sender,e);
+            }
+        }
+
+        private void cboxRemember_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!cboxRemember.Checked)
+            {
+                cboxAutoLogin.Checked = false;
+            }
+        }
+
+        private void TxtID_TextChanged(object sender, EventArgs e)
+        {
+            Validate();
+            //根据号码查询其密码、记住密码和自动登录字段的值
+            string sql = "select Pwd,Remember,AutoLogin from tb_User where ID=" + int.Parse(txtID.Text.Trim()) + "";
+            DataSet ds = dataOper.GetDataSet(sql);//查询结果存储到数据集中
+            if (ds.Tables[0].Rows.Count>0)              //判断是否存在该用户
+            {                
+                if(Convert.ToInt32(ds.Tables[0].Rows[0][1]) == 1) //判断是否记住密码
+                {
+                    cboxRemember.Checked = true;//记录密码复选框选中了记住密码
+                    txtPwd.Text = ds.Tables[0].Rows[0][0].ToString();//上面sql语句查询的结果也就是字段Pwd的值，自动输入密码
+                    if (Convert.ToInt32(ds.Tables[0].Rows[0][2]) == 1)//在记住密码的同时，判断是否自动登录
+                    {
+                        //实现自动登录
+                        cboxAutoLogin.Checked = true;
+                        PboxLogin_Click(sender, e);
+                    }
+                }
+            }
+        }
+
+        private void LinklblReg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Frm_Register frmRegister = new Frm_Register();
+            frmRegister.Show();
+        }
+
+        private void PboxMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;//实现最小化
+        }
+
+        private void PboxClose_Click(object sender, EventArgs e)
+        {
+            Application.ExitThread();//实现退出应用程序
         }
     }
 }
