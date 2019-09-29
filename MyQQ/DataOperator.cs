@@ -11,7 +11,7 @@ namespace MyQQ
     class DataOperator
     {
         //数据库连接字符串
-        private static string connString = "Data Source=.;Database=MyQQ;User ID=sa;Pwd=123456;";
+        private static string connString = "Data Source=192.168.6.222;Database=MyQQ;User ID=sa;Pwd=123456;";
         //数据库连接对象
         public static SqlConnection connection = new SqlConnection(connString);
         //执行sql语句方法

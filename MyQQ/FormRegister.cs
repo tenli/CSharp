@@ -16,5 +16,15 @@ namespace MyQQ
         {
             InitializeComponent();
         }
+
+        private void TextBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
